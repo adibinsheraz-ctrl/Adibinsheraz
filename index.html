@@ -1,27 +1,40 @@
 <!DOCTYPE html>
-<!-- Created By CodeWith.Adi -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeWith.Adi</title>
+    <title>Adi Bin Sheraz - Full Stack Developer</title>
     <link rel="website icon" href="profile-3.png" type="image/png">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+    
+    <!-- Scroll Up Button -->
     <div class="scroll-up-btn">
-        <i class="fas fa-angle-up"></i>
+        <i class="fas fa-chevron-up"></i>
     </div>
+
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="max-width">
-            <div class="logo"><a href="#">CodeWith<span>.Adi</span></a></div>
+            <div class="logo">
+                <a href="#">
+                    <span class="logo-bracket">&lt;</span>
+                    <span class="logo-text">Adi</span>
+                    <span class="logo-dot">.</span>
+                    <span class="logo-text">dev</span>
+                    <span class="logo-bracket">/&gt;</span>
+                </a>
+            </div>
             <ul class="menu">
                 <li><a href="#home" class="menu-btn">Home</a></li>
                 <li><a href="#about" class="menu-btn">About</a></li>
@@ -30,180 +43,337 @@
                 <li><a href="#contact" class="menu-btn">Contact</a></li>
             </ul>
             <div class="menu-btn">
-                <i class="fas fa-bars"></i>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
 
-    <!-- home section start -->
+    <!-- Hero Section -->
     <section class="home" id="home">
+        <div class="hero-bg">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>
+        </div>
         <div class="max-width">
             <div class="home-content">
-                <div class="text-1">Hello, my name is</div>
-                <div class="text-2">Adi Bin Sheraz</div>
-                <div class="text-3">And I'm a <span class="typing"></span></div>
-                <a href="#">Hire me</a>
+                <div class="text-content">
+                    <div class="text-1" data-aos="fade-up">Hello, I'm</div>
+                    <div class="text-2" data-aos="fade-up" data-aos-delay="200">
+                        <span class="gradient-text">Adi Bin Sheraz</span>
+                    </div>
+                    <div class="text-3" data-aos="fade-up" data-aos-delay="400">
+                        And I'm a <span class="typing"></span>
+                    </div>
+                    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
+                        <a href="#contact" class="btn-primary">
+                            <span>Hire Me</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#about" class="btn-secondary">
+                            <span>Learn More</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual" data-aos="fade-left" data-aos-delay="800">
+                    <div class="code-window">
+                        <div class="window-header">
+                            <div class="window-controls">
+                                <span class="control close"></span>
+                                <span class="control minimize"></span>
+                                <span class="control maximize"></span>
+                            </div>
+                            <div class="window-title">portfolio.js</div>
+                        </div>
+                        <div class="code-content">
+                            <div class="code-line">
+                                <span class="line-number">1</span>
+                                <span class="code-text">
+                                    <span class="keyword">const</span> 
+                                    <span class="variable">developer</span> 
+                                    <span class="operator">=</span> 
+                                    <span class="punctuation">{</span>
+                                </span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">2</span>
+                                <span class="code-text">
+                                    &nbsp;&nbsp;<span class="property">name</span><span class="punctuation">:</span> 
+                                    <span class="string">'Adi Bin Sheraz'</span><span class="punctuation">,</span>
+                                </span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">3</span>
+                                <span class="code-text">
+                                    &nbsp;&nbsp;<span class="property">skills</span><span class="punctuation">:</span> 
+                                    <span class="punctuation">[</span><span class="string">'React'</span><span class="punctuation">,</span> 
+                                    <span class="string">'Node.js'</span><span class="punctuation">],</span>
+                                </span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">4</span>
+                                <span class="code-text">
+                                    &nbsp;&nbsp;<span class="property">passion</span><span class="punctuation">:</span> 
+                                    <span class="string">'Creating Amazing UX'</span>
+                                </span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">5</span>
+                                <span class="code-text">
+                                    <span class="punctuation">}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-text">Scroll Down</div>
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
             </div>
         </div>
     </section>
 
-    <!-- about section start -->
+    <!-- About Section -->
     <section class="about" id="about">
         <div class="max-width">
-            <h2 class="title">About me</h2>
+            <h2 class="title" data-aos="fade-up">About Me</h2>
             <div class="about-content">
-                <div class="column left">
-                    <img src="profile-11.png" alt="">
+                <div class="column left" data-aos="fade-right">
+                    <div class="image-container">
+                        <img src="profile-11.png" alt="Adi Bin Sheraz">
+                        <div class="image-overlay"></div>
+                    </div>
                 </div>
-                <div class="column right">
+                <div class="column right" data-aos="fade-left">
                     <div class="text">I'm Adi and I'm a <span class="typing-2"></span></div>
-                    <p>I’m a professional web developer with a passion for crafting clean, responsive, and user-friendly websites. With years of experience in front-end and back-end development, I specialize in building modern web applications that are not only visually appealing but also highly functional and scalable.Whether it's a personal portfolio, a dynamic e-commerce platform, or a complex web application, I bring a detail-oriented approach and a commitment to quality in every project I take on. My toolkit includes HTML, CSS, JavaScript, React, Node.js, and more — and I’m always eager to learn and adapt to new technologies.
-
-                   let’s build something great together.</p>
-                    <a href="#">Download CV</a>
+                    <p>I'm a passionate full-stack developer with expertise in creating modern, responsive, and user-centric web applications. With years of experience in both front-end and back-end development, I specialize in building scalable solutions that combine beautiful design with robust functionality.</p>
+                    <p>My approach focuses on clean code, optimal performance, and exceptional user experiences. I stay current with the latest technologies and best practices to deliver cutting-edge solutions for every project.</p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Client Satisfaction</div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-primary">
+                        <span>Download CV</span>
+                        <i class="fas fa-download"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- services section start -->
+    <!-- Services Section -->
     <section class="services" id="services">
         <div class="max-width">
-            <h2 class="title">My services</h2>
+            <h2 class="title" data-aos="fade-up">My Services</h2>
             <div class="serv-content">
-                <div class="card">
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
                     <div class="box">
-                        <i class="fas fa-paint-brush"></i>
+                        <div class="icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
                         <div class="text">Web Design</div>
-                        <p>I design modern, responsive, and user-friendly websites tailored to your business needs.</p>
+                        <p>Creating stunning, modern, and responsive web designs that captivate users and drive engagement through thoughtful UX/UI principles.</p>
+                        <div class="card-footer">
+                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
                     <div class="box">
-                        <i class="fas fa-chart-line"></i>
-                        <div class="text">Advertising</div>
-                        <p>I help businesses grow by creating targeted advertising campaigns that reach the right audience.</p>
+                        <div class="icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="text">Web Development</div>
+                        <p>Building robust, scalable web applications using cutting-edge technologies and frameworks for optimal performance and user experience.</p>
+                        <div class="card-footer">
+                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" data-aos="fade-up" data-aos-delay="300">
                     <div class="box">
-                        <i class="fas fa-code"></i>
-                        <div class="text">Apps Design</div>
-                        <p>I design clean, functional, and engaging mobile and web app interfaces that enhance user engagement</p>
+                        <div class="icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="text">App Development</div>
+                        <p>Developing cross-platform mobile and web applications that deliver seamless experiences across all devices and platforms.</p>
+                        <div class="card-footer">
+                            <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
                 </div>
-               </div>
             </div>
         </div>
     </section>
 
-    <!-- skills section start -->
+    <!-- Skills Section -->
     <section class="skills" id="skills">
         <div class="max-width">
-            <h2 class="title">My skills</h2>
+            <h2 class="title" data-aos="fade-up">My Skills</h2>
             <div class="skills-content">
-                <div class="column left">
-                    <div class="text">My creative skills & experiences.</div>
-                    <p>I'm a web developer skilled in building responsive and user-friendly websites. I work with:
-
-HTML & CSS for structure and design JavaScript for interactivity PHP & MySQL for backend development Always learning, always building better web experiences.</p>
-                    <a href="#">Read more</a>
+                <div class="column left" data-aos="fade-right">
+                    <div class="text">My Technical Expertise</div>
+                    <p>I'm a versatile full-stack developer with expertise in modern web technologies. My skill set spans across frontend frameworks, backend development, database management, and cloud services. I'm passionate about writing clean, efficient code and staying updated with the latest industry trends.</p>
+                    <div class="tech-stack">
+                        <div class="tech-item">
+                            <i class="fab fa-react"></i>
+                            <span>React</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-node-js"></i>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-python"></i>
+                            <span>Python</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-aws"></i>
+                            <span>AWS</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn-secondary">View All Skills</a>
                 </div>
-                <div class="column right">
-                    <div class="bars">
-                        <div class="info">
-                            <span>HTML</span>
-                            <span>90%</span>
+                <div class="column right" data-aos="fade-left">
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Frontend Development</span>
+                            <span class="skill-percentage">95%</span>
                         </div>
-                        <div class="line html"></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="95%"></div>
+                        </div>
                     </div>
-                    <div class="bars">
-                        <div class="info">
-                            <span>CSS</span>
-                            <span>60%</span>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Backend Development</span>
+                            <span class="skill-percentage">88%</span>
                         </div>
-                        <div class="line css"></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="88%"></div>
+                        </div>
                     </div>
-                    <div class="bars">
-                        <div class="info">
-                            <span>JavaScript</span>
-                            <span>80%</span>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">Database Design</span>
+                            <span class="skill-percentage">85%</span>
                         </div>
-                        <div class="line js"></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85%"></div>
+                        </div>
                     </div>
-                    <div class="bars">
-                        <div class="info">
-                            <span>PHP</span>
-                            <span>50%</span>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">UI/UX Design</span>
+                            <span class="skill-percentage">80%</span>
                         </div>
-                        <div class="line php"></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80%"></div>
+                        </div>
                     </div>
-                    <div class="bars">
-                        <div class="info">
-                            <span>MySQL</span>
-                            <span>70%</span>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span class="skill-name">DevOps & Cloud</span>
+                            <span class="skill-percentage">75%</span>
                         </div>
-                        <div class="line mysql"></div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="75%"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- teams section start -->
-    
-
-    <!-- contact section start -->
+    <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="max-width">
-            <h2 class="title">Contact me</h2>
+            <h2 class="title" data-aos="fade-up">Get In Touch</h2>
             <div class="contact-content">
-                <div class="column left">
-                    <div class="text">Get in Touch</div>
-                    <p>Have a web project in mind or need help bringing your idea to life? I'm a passionate web developer ready to collaborate on anything from personal websites to full-scale web applications. Drop a message — let's build something awesome together!</p>
+                <div class="column left" data-aos="fade-right">
+                    <div class="text">Let's Work Together</div>
+                    <p>Ready to bring your ideas to life? I'm passionate about creating exceptional digital experiences and would love to collaborate on your next project. Whether it's a complete web application or just a consultation, let's discuss how we can make it happen.</p>
                     <div class="icons">
                         <div class="row">
-                            <i class="fas fa-user"></i>
+                            <div class="icon-wrapper">
+                                <i class="fas fa-user"></i>
+                            </div>
                             <div class="info">
                                 <div class="head">Name</div>
                                 <div class="sub-title">Adi Bin Sheraz</div>
                             </div>
                         </div>
                         <div class="row">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="icon-wrapper">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
                             <div class="info">
                                 <div class="head">Address</div>
                                 <div class="sub-title">Lahore, Pakistan</div>
                             </div>
                         </div>
                         <div class="row">
-                            <i class="fas fa-envelope"></i>
+                            <div class="icon-wrapper">
+                                <i class="fas fa-envelope"></i>
+                            </div>
                             <div class="info">
                                 <div class="head">Email</div>
                                 <div class="sub-title">adi.binsheraz@gmail.com</div>
                             </div>
                         </div>
                     </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="column right">
-                    <div class="text">Message me</div>
-                    <form action="#">
+                <div class="column right" data-aos="fade-left">
+                    <div class="text">Send Message</div>
+                    <form action="#" class="contact-form">
                         <div class="fields">
                             <div class="field name">
-                                <input type="text" placeholder="Name" required>
+                                <input type="text" placeholder="Your Name" required>
+                                <label>Name</label>
                             </div>
                             <div class="field email">
-                                <input type="email" placeholder="Email" required>
+                                <input type="email" placeholder="Your Email" required>
+                                <label>Email</label>
                             </div>
                         </div>
                         <div class="field">
                             <input type="text" placeholder="Subject" required>
+                            <label>Subject</label>
                         </div>
                         <div class="field textarea">
-                            <textarea cols="30" rows="10" placeholder="Message.." required></textarea>
+                            <textarea cols="30" rows="10" placeholder="Your Message..." required></textarea>
+                            <label>Message</label>
                         </div>
                         <div class="button-area">
-                            <button type="submit">Send message</button>
+                            <button type="submit" class="btn-primary">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -211,9 +381,26 @@ HTML & CSS for structure and design JavaScript for interactivity PHP & MySQL for
         </div>
     </section>
 
-    <!-- footer section start -->
+    <!-- Footer -->
     <footer>
-        <span>Created By <a href="https://www.instagram.com/adi_bin_sheraz?igsh=dTV4MTBiZWRoZDRp">AdiBinSheraz</a> | <span class="far fa-copyright"></span> 2020 All rights reserved.</span>
+        <div class="max-width">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <span>Created with <i class="fas fa-heart"></i> by 
+                        <a href="https://www.instagram.com/adi_bin_sheraz?igsh=dTV4MTBiZWRoZDRp">Adi Bin Sheraz</a>
+                    </span>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2024 All rights reserved.</span>
+            </div>
+        </div>
     </footer>
 
     <script src="script.js"></script>
