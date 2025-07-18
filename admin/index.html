@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Admin Panel</title>
+    <link rel="stylesheet" href="admin-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="logo">
+                    <span class="logo-bracket"><</span>
+                    <span class="logo-text">Admin</span>
+                    <span class="logo-dot">.</span>
+                    <span class="logo-text">Panel</span>
+                    <span class="logo-bracket">/></span>
+                </div>
+                <h2>Portfolio Management System</h2>
+            </div>
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="Password" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+                <button type="submit" class="login-btn">
+                    <span>Login</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            <div class="login-footer">
+                <p>Demo Credentials: admin / admin123</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-dashboard" id="adminDashboard" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-bracket"><</span>
+                    <span class="logo-text">Admin</span>
+                    <span class="logo-dot">.</span>
+                    <span class="logo-text">Panel</span>
+                    <span class="logo-bracket">/></span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#dashboard" class="nav-link active" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a></li>
+                    <li><a href="#profile" class="nav-link" data-section="profile">
+                        <i class="fas fa-user"></i>
+                        <span>Profile Settings</span>
+                    </a></li>
+                    <li><a href="#services" class="nav-link" data-section="services">
+                        <i class="fas fa-cogs"></i>
+                        <span>Services</span>
+                    </a></li>
+                    <li><a href="#skills" class="nav-link" data-section="skills">
+                        <i class="fas fa-code"></i>
+                        <span>Skills</span>
+                    </a></li>
+                    <li><a href="#projects" class="nav-link" data-section="projects">
+                        <i class="fas fa-folder"></i>
+                        <span>Projects</span>
+                    </a></li>
+                    <li><a href="#messages" class="nav-link" data-section="messages">
+                        <i class="fas fa-envelope"></i>
+                        <span>Messages</span>
+                        <span class="badge" id="messageCount">3</span>
+                    </a></li>
+                    <li><a href="#analytics" class="nav-link" data-section="analytics">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Analytics</span>
+                    </a></li>
+                    <li><a href="#settings" class="nav-link" data-section="settings">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="main-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle" id="sidebarToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="page-title">Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="header-actions">
+                        <button class="preview-btn" id="previewBtn">
+                            <i class="fas fa-eye"></i>
+                            <span>Preview Site</span>
+                        </button>
+                        <div class="user-menu">
+                            <img src="../profile-3.png" alt="Admin" class="user-avatar">
+                            <span class="user-name">Adi Bin Sheraz</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="content-area">
+                <!-- Dashboard Section -->
+                <section class="content-section active" id="dashboard-section">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>1,234</h3>
+                                <p>Total Views</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>23</h3>
+                                <p>Messages</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-folder"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>12</h3>
+                                <p>Projects</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>8</h3>
+                                <p>Skills</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3>Recent Activity</h3>
+                            </div>
+                            <div class="activity-list">
+                                <div class="activity-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <div class="activity-content">
+                                        <p>New message from John Doe</p>
+                                        <span class="activity-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <i class="fas fa-eye"></i>
+                                    <div class="activity-content">
+                                        <p>Portfolio viewed 15 times</p>
+                                        <span class="activity-time">5 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <i class="fas fa-edit"></i>
+                                    <div class="activity-content">
+                                        <p>Profile updated</p>
+                                        <span class="activity-time">1 day ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3>Quick Actions</h3>
+                            </div>
+                            <div class="quick-actions">
+                                <button class="action-btn" data-action="add-project">
+                                    <i class="fas fa-plus"></i>
+                                    <span>Add Project</span>
+                                </button>
+                                <button class="action-btn" data-action="update-skills">
+                                    <i class="fas fa-code"></i>
+                                    <span>Update Skills</span>
+                                </button>
+                                <button class="action-btn" data-action="view-messages">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>View Messages</span>
+                                </button>
+                                <button class="action-btn" data-action="backup-data">
+                                    <i class="fas fa-download"></i>
+                                    <span>Backup Data</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Profile Settings Section -->
+                <section class="content-section" id="profile-section">
+                    <div class="section-header">
+                        <h2>Profile Settings</h2>
+                        <p>Update your personal information and portfolio details</p>
+                    </div>
+                    <form class="profile-form" id="profileForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" value="Adi Bin Sheraz">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" value="adi.binsheraz@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" value="+92 300 1234567">
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" id="location" value="Lahore, Pakistan">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="bio">Bio</label>
+                            <textarea id="bio" rows="4">I'm a passionate full-stack developer with expertise in creating modern, responsive, and user-centric web applications.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="profileImage">Profile Image</label>
+                            <div class="image-upload">
+                                <img src="../profile-11.png" alt="Profile" class="current-image">
+                                <input type="file" id="profileImage" accept="image/*">
+                                <button type="button" class="upload-btn">Change Image</button>
+                            </div>
+                        </div>
+                        <button type="submit" class="save-btn">
+                            <i class="fas fa-save"></i>
+                            <span>Save Changes</span>
+                        </button>
+                    </form>
+                </section>
+
+                <!-- Services Section -->
+                <section class="content-section" id="services-section">
+                    <div class="section-header">
+                        <h2>Services Management</h2>
+                        <button class="add-btn" id="addServiceBtn">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Service</span>
+                        </button>
+                    </div>
+                    <div class="services-grid" id="servicesGrid">
+                        <div class="service-item" data-id="1">
+                            <div class="service-header">
+                                <i class="fas fa-palette"></i>
+                                <div class="service-actions">
+                                    <button class="edit-btn" data-action="edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="delete-btn" data-action="delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <h3>Web Design</h3>
+                            <p>Creating stunning, modern, and responsive web designs that captivate users and drive engagement through thoughtful UX/UI principles.</p>
+                        </div>
+                        <div class="service-item" data-id="2">
+                            <div class="service-header">
+                                <i class="fas fa-code"></i>
+                                <div class="service-actions">
+                                    <button class="edit-btn" data-action="edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="delete-btn" data-action="delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <h3>Web Development</h3>
+                            <p>Building robust, scalable web applications using cutting-edge technologies and frameworks for optimal performance and user experience.</p>
+                        </div>
+                        <div class="service-item" data-id="3">
+                            <div class="service-header">
+                                <i class="fas fa-mobile-alt"></i>
+                                <div class="service-actions">
+                                    <button class="edit-btn" data-action="edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="delete-btn" data-action="delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <h3>App Development</h3>
+                            <p>Developing cross-platform mobile and web applications that deliver seamless experiences across all devices and platforms.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Skills Section -->
+                <section class="content-section" id="skills-section">
+                    <div class="section-header">
+                        <h2>Skills Management</h2>
+                        <button class="add-btn" id="addSkillBtn">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Skill</span>
+                        </button>
+                    </div>
+                    <div class="skills-list" id="skillsList">
+                        <div class="skill-item" data-id="1">
+                            <div class="skill-info">
+                                <span class="skill-name">Frontend Development</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
+                            <div class="skill-actions">
+                                <button class="edit-btn" data-action="edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="delete-btn" data-action="delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-id="2">
+                            <div class="skill-info">
+                                <span class="skill-name">Backend Development</span>
+                                <span class="skill-percentage">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 88%"></div>
+                            </div>
+                            <div class="skill-actions">
+                                <button class="edit-btn" data-action="edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="delete-btn" data-action="delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-id="3">
+                            <div class="skill-info">
+                                <span class="skill-name">Database Design</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                            <div class="skill-actions">
+                                <button class="edit-btn" data-action="edit">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="delete-btn" data-action="delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Projects Section -->
+                <section class="content-section" id="projects-section">
+                    <div class="section-header">
+                        <h2>Projects Management</h2>
+                        <button class="add-btn" id="addProjectBtn">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Project</span>
+                        </button>
+                    </div>
+                    <div class="projects-grid" id="projectsGrid">
+                        <div class="project-item" data-id="1">
+                            <div class="project-image">
+                                <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=400" alt="E-commerce Platform">
+                            </div>
+                            <div class="project-content">
+                                <h3>E-commerce Platform</h3>
+                                <p>Full-stack e-commerce solution with React and Node.js</p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">React</span>
+                                    <span class="tech-tag">Node.js</span>
+                                    <span class="tech-tag">MongoDB</span>
+                                </div>
+                                <div class="project-actions">
+                                    <button class="edit-btn" data-action="edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="delete-btn" data-action="delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-item" data-id="2">
+                            <div class="project-image">
+                                <img src="https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Task Management App">
+                            </div>
+                            <div class="project-content">
+                                <h3>Task Management App</h3>
+                                <p>Collaborative task management with real-time updates</p>
+                                <div class="project-tech">
+                                    <span class="tech-tag">Vue.js</span>
+                                    <span class="tech-tag">Express</span>
+                                    <span class="tech-tag">Socket.io</span>
+                                </div>
+                                <div class="project-actions">
+                                    <button class="edit-btn" data-action="edit">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="delete-btn" data-action="delete">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Messages Section -->
+                <section class="content-section" id="messages-section">
+                    <div class="section-header">
+                        <h2>Messages</h2>
+                        <div class="message-filters">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="unread">Unread</button>
+                            <button class="filter-btn" data-filter="important">Important</button>
+                        </div>
+                    </div>
+                    <div class="messages-list" id="messagesList">
+                        <div class="message-item unread" data-id="1">
+                            <div class="message-avatar">
+                                <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=100" alt="John Doe">
+                            </div>
+                            <div class="message-content">
+                                <div class="message-header">
+                                    <h4>John Doe</h4>
+                                    <span class="message-time">2 hours ago</span>
+                                </div>
+                                <p class="message-subject">Project Collaboration Inquiry</p>
+                                <p class="message-preview">Hi Adi, I'm interested in collaborating on a web development project...</p>
+                            </div>
+                            <div class="message-actions">
+                                <button class="reply-btn" data-action="reply">
+                                    <i class="fas fa-reply"></i>
+                                </button>
+                                <button class="delete-btn" data-action="delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="message-item" data-id="2">
+                            <div class="message-avatar">
+                                <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=100" alt="Sarah Wilson">
+                            </div>
+                            <div class="message-content">
+                                <div class="message-header">
+                                    <h4>Sarah Wilson</h4>
+                                    <span class="message-time">1 day ago</span>
+                                </div>
+                                <p class="message-subject">Website Design Quote</p>
+                                <p class="message-preview">Hello, I need a quote for a complete website redesign...</p>
+                            </div>
+                            <div class="message-actions">
+                                <button class="reply-btn" data-action="reply">
+                                    <i class="fas fa-reply"></i>
+                                </button>
+                                <button class="delete-btn" data-action="delete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Analytics Section -->
+                <section class="content-section" id="analytics-section">
+                    <div class="section-header">
+                        <h2>Analytics</h2>
+                        <div class="date-range">
+                            <select id="dateRange">
+                                <option value="7">Last 7 days</option>
+                                <option value="30" selected>Last 30 days</option>
+                                <option value="90">Last 90 days</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <h3>Page Views</h3>
+                            <div class="chart-container">
+                                <canvas id="viewsChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>Popular Sections</h3>
+                            <div class="popular-sections">
+                                <div class="section-stat">
+                                    <span class="section-name">About</span>
+                                    <div class="section-bar">
+                                        <div class="section-progress" style="width: 85%"></div>
+                                    </div>
+                                    <span class="section-percentage">85%</span>
+                                </div>
+                                <div class="section-stat">
+                                    <span class="section-name">Services</span>
+                                    <div class="section-bar">
+                                        <div class="section-progress" style="width: 72%"></div>
+                                    </div>
+                                    <span class="section-percentage">72%</span>
+                                </div>
+                                <div class="section-stat">
+                                    <span class="section-name">Contact</span>
+                                    <div class="section-bar">
+                                        <div class="section-progress" style="width: 68%"></div>
+                                    </div>
+                                    <span class="section-percentage">68%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section class="content-section" id="settings-section">
+                    <div class="section-header">
+                        <h2>Settings</h2>
+                        <p>Configure your portfolio and admin panel preferences</p>
+                    </div>
+                    <div class="settings-grid">
+                        <div class="settings-card">
+                            <h3>General Settings</h3>
+                            <div class="setting-item">
+                                <label for="siteTitle">Site Title</label>
+                                <input type="text" id="siteTitle" value="Adi Bin Sheraz - Full Stack Developer">
+                            </div>
+                            <div class="setting-item">
+                                <label for="siteDescription">Site Description</label>
+                                <textarea id="siteDescription" rows="3">Portfolio of Adi Bin Sheraz - Full Stack Developer specializing in modern web applications</textarea>
+                            </div>
+                            <div class="setting-item">
+                                <label class="toggle-label">
+                                    <input type="checkbox" id="maintenanceMode">
+                                    <span class="toggle-slider"></span>
+                                    Maintenance Mode
+                                </label>
+                            </div>
+                        </div>
+                        <div class="settings-card">
+                            <h3>Theme Settings</h3>
+                            <div class="setting-item">
+                                <label for="primaryColor">Primary Color</label>
+                                <input type="color" id="primaryColor" value="#8b5cf6">
+                            </div>
+                            <div class="setting-item">
+                                <label for="secondaryColor">Secondary Color</label>
+                                <input type="color" id="secondaryColor" value="#f59e0b">
+                            </div>
+                            <div class="setting-item">
+                                <label class="toggle-label">
+                                    <input type="checkbox" id="darkMode" checked>
+                                    <span class="toggle-slider"></span>
+                                    Dark Mode
+                                </label>
+                            </div>
+                        </div>
+                        <div class="settings-card">
+                            <h3>Security</h3>
+                            <div class="setting-item">
+                                <label for="currentPassword">Current Password</label>
+                                <input type="password" id="currentPassword">
+                            </div>
+                            <div class="setting-item">
+                                <label for="newPassword">New Password</label>
+                                <input type="password" id="newPassword">
+                            </div>
+                            <div class="setting-item">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" id="confirmPassword">
+                            </div>
+                            <button class="change-password-btn">Change Password</button>
+                        </div>
+                    </div>
+                    <div class="settings-actions">
+                        <button class="save-settings-btn">
+                            <i class="fas fa-save"></i>
+                            <span>Save All Settings</span>
+                        </button>
+                        <button class="reset-settings-btn">
+                            <i class="fas fa-undo"></i>
+                            <span>Reset to Default</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Service Modal -->
+    <div class="modal" id="serviceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="serviceModalTitle">Add Service</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="serviceForm">
+                <div class="form-group">
+                    <label for="serviceIcon">Icon Class</label>
+                    <input type="text" id="serviceIcon" placeholder="fas fa-palette">
+                </div>
+                <div class="form-group">
+                    <label for="serviceTitle">Title</label>
+                    <input type="text" id="serviceTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="serviceDescription">Description</label>
+                    <textarea id="serviceDescription" rows="4" required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="save-btn">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Skill Modal -->
+    <div class="modal" id="skillModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="skillModalTitle">Add Skill</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="skillForm">
+                <div class="form-group">
+                    <label for="skillName">Skill Name</label>
+                    <input type="text" id="skillName" required>
+                </div>
+                <div class="form-group">
+                    <label for="skillPercentage">Percentage</label>
+                    <input type="range" id="skillPercentage" min="0" max="100" value="50">
+                    <span id="skillPercentageValue">50%</span>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="save-btn">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div class="modal" id="projectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="projectModalTitle">Add Project</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="projectForm">
+                <div class="form-group">
+                    <label for="projectTitle">Title</label>
+                    <input type="text" id="projectTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="projectDescription">Description</label>
+                    <textarea id="projectDescription" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="projectImage">Image URL</label>
+                    <input type="url" id="projectImage">
+                </div>
+                <div class="form-group">
+                    <label for="projectTech">Technologies (comma separated)</label>
+                    <input type="text" id="projectTech" placeholder="React, Node.js, MongoDB">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn">Cancel</button>
+                    <button type="submit" class="save-btn">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <i class="notification-icon"></i>
+            <span class="notification-message"></span>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>

@@ -264,6 +264,19 @@ $(document).ready(function(){
     $('.contact-form').submit(function(e) {
         e.preventDefault();
         
+        // Collect form data
+        const formData = {
+            name: $(this).find('input[placeholder="Your Name"]').val(),
+            email: $(this).find('input[placeholder="Your Email"]').val(),
+            subject: $(this).find('input[placeholder="Subject"]').val(),
+            message: $(this).find('textarea').val()
+        };
+        
+        // Save to admin panel if data sync is available
+        if (window.portfolioDataSync) {
+            window.portfolioDataSync.handleContactForm(formData);
+        }
+        
         const $button = $(this).find('button[type="submit"]');
         const originalText = $button.html();
         
@@ -284,6 +297,9 @@ $(document).ready(function(){
                 $button.html(originalText);
                 $button.prop('disabled', false);
                 gsap.to($button[0], {duration: 0.3, scale: 1, ease: "power2.out"});
+                
+                // Reset form
+                $('.contact-form')[0].reset();
             }, 3000);
         }, 2500);
     });
