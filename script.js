@@ -2,6 +2,9 @@ $(document).ready(function(){
     // Initialize GSAP
     gsap.registerPlugin(ScrollTrigger);
     
+    // Add loading screen
+    $('body').addClass('loading');
+    
     // Scroll Progress Bar
     function updateScrollProgress() {
         const scrollTop = $(window).scrollTop();
@@ -12,7 +15,7 @@ $(document).ready(function(){
     
     $(window).scroll(updateScrollProgress);
     
-    // Navbar scroll effects
+    // Enhanced Navbar scroll effects
     $(window).scroll(function(){
         if(this.scrollY > 20){
             $('.navbar').addClass("sticky");
@@ -27,21 +30,23 @@ $(document).ready(function(){
         }
     });
 
-    // Smooth scroll for scroll-up button
+    // Smooth scroll for scroll-up button with animation
     $('.scroll-up-btn').click(function(){
-        $('html, body').animate({scrollTop: 0}, 800);
+        gsap.to(window, {duration: 1, scrollTo: 0, ease: "power2.inOut"});
     });
 
-    // Smooth scroll for navigation links
+    // Enhanced smooth scroll for navigation links
     $('.navbar .menu li a').click(function(e){
         e.preventDefault();
         const target = $(this).attr('href');
         if(target.startsWith('#')) {
             const targetSection = $(target);
             if(targetSection.length) {
-                $('html, body').animate({
-                    scrollTop: targetSection.offset().top - 80
-                }, 800);
+                gsap.to(window, {
+                    duration: 1.2,
+                    scrollTo: targetSection.offset().top - 80,
+                    ease: "power2.inOut"
+                });
             }
         }
         
@@ -50,10 +55,18 @@ $(document).ready(function(){
         $('.menu-btn').removeClass('active');
     });
 
-    // Mobile menu toggle
+    // Enhanced mobile menu toggle with animations
     $('.menu-btn').click(function(){
         $('.navbar .menu').toggleClass("active");
         $(this).toggleClass("active");
+        
+        if($(this).hasClass('active')) {
+            // Animate menu items
+            gsap.fromTo('.navbar .menu li', 
+                {x: -50, opacity: 0}, 
+                {x: 0, opacity: 1, duration: 0.5, stagger: 0.1, delay: 0.2}
+            );
+        }
     });
 
     // Close mobile menu when clicking outside
@@ -64,20 +77,26 @@ $(document).ready(function(){
         }
     });
 
-    // Typing animation
+    // Enhanced typing animation with more dynamic effects
     const typed = new Typed(".typing", {
         strings: [
             "Full Stack Developer", 
             "UI/UX Designer", 
             "Problem Solver", 
             "Tech Enthusiast",
-            "Creative Thinker"
+            "Creative Thinker",
+            "Code Artist",
+            "Digital Innovator"
         ],
-        typeSpeed: 100,
-        backSpeed: 60,
+        typeSpeed: 80,
+        backSpeed: 50,
         loop: true,
         showCursor: true,
-        cursorChar: '|'
+        cursorChar: '|',
+        smartBackspace: true,
+        fadeOut: true,
+        fadeOutClass: 'typed-fade-out',
+        fadeOutDelay: 500
     });
 
     const typed2 = new Typed(".typing-2", {
@@ -85,18 +104,20 @@ $(document).ready(function(){
             "Full Stack Developer", 
             "UI/UX Designer", 
             "Problem Solver", 
-            "Tech Enthusiast"
+            "Tech Enthusiast",
+            "Creative Thinker"
         ],
-        typeSpeed: 100,
-        backSpeed: 60,
+        typeSpeed: 80,
+        backSpeed: 50,
         loop: true,
         showCursor: true,
-        cursorChar: '|'
+        cursorChar: '|',
+        smartBackspace: true
     });
 
-    // Animate skill bars when they come into view
+    // Enhanced skill bars animation with stagger effect
     function animateSkillBars() {
-        $('.skill-progress').each(function() {
+        $('.skill-progress').each(function(index) {
             const $this = $(this);
             const width = $this.data('width');
             const elementTop = $this.offset().top;
@@ -107,53 +128,64 @@ $(document).ready(function(){
             if (elementBottom > viewportTop && elementTop < viewportBottom) {
                 if (!$this.hasClass('animated')) {
                     $this.addClass('animated');
-                    $this.animate({
-                        width: width
-                    }, 1500);
+                    
+                    // GSAP animation for smoother effect
+                    gsap.to($this[0], {
+                        width: width,
+                        duration: 2,
+                        delay: index * 0.2,
+                        ease: "power2.out"
+                    });
                 }
             }
         });
     }
 
     $(window).scroll(animateSkillBars);
-    animateSkillBars(); // Check on load
+    animateSkillBars();
 
-    // GSAP Animations
+    // Advanced GSAP Animations
     
-    // Hero section animations
-    gsap.timeline()
-        .from(".text-1", {duration: 1, y: 50, opacity: 0, ease: "power3.out"})
-        .from(".text-2", {duration: 1, y: 50, opacity: 0, ease: "power3.out"}, "-=0.7")
-        .from(".text-3", {duration: 1, y: 50, opacity: 0, ease: "power3.out"}, "-=0.7")
-        .from(".hero-buttons", {duration: 1, y: 50, opacity: 0, ease: "power3.out"}, "-=0.5")
-        .from(".code-window", {duration: 1.2, x: 100, opacity: 0, ease: "power3.out"}, "-=0.8");
+    // Hero section enhanced animations
+    const heroTl = gsap.timeline();
+    heroTl
+        .from(".text-1", {duration: 1.2, y: 80, opacity: 0, ease: "power3.out"})
+        .from(".text-2", {duration: 1.2, y: 80, opacity: 0, ease: "power3.out"}, "-=0.8")
+        .from(".text-3", {duration: 1.2, y: 80, opacity: 0, ease: "power3.out"}, "-=0.8")
+        .from(".hero-buttons", {duration: 1, y: 50, opacity: 0, ease: "power3.out"}, "-=0.6")
+        .from(".code-window", {duration: 1.5, x: 150, opacity: 0, rotationY: 15, ease: "power3.out"}, "-=1");
 
-    // Floating shapes animation
+    // Enhanced floating shapes animation
     gsap.to(".shape", {
-        y: "random(-20, 20)",
-        x: "random(-20, 20)",
-        rotation: "random(-180, 180)",
-        duration: "random(4, 8)",
+        y: "random(-30, 30)",
+        x: "random(-30, 30)",
+        rotation: "random(-360, 360)",
+        scale: "random(0.8, 1.2)",
+        duration: "random(6, 12)",
         ease: "sine.inOut",
         repeat: -1,
         yoyo: true,
         stagger: {
-            amount: 2,
+            amount: 3,
             from: "random"
         }
     });
 
-    // Scroll-triggered animations
+    // Advanced scroll-triggered animations
     gsap.utils.toArray('.card').forEach((card, i) => {
         gsap.fromTo(card, 
             {
-                y: 100,
-                opacity: 0
+                y: 120,
+                opacity: 0,
+                rotationX: 15,
+                scale: 0.9
             },
             {
                 y: 0,
                 opacity: 1,
-                duration: 0.8,
+                rotationX: 0,
+                scale: 1,
+                duration: 1.2,
                 ease: "power3.out",
                 scrollTrigger: {
                     trigger: card,
@@ -161,12 +193,12 @@ $(document).ready(function(){
                     end: "bottom 15%",
                     toggleActions: "play none none reverse"
                 },
-                delay: i * 0.1
+                delay: i * 0.15
             }
         );
     });
 
-    // Stats counter animation
+    // Enhanced stats counter animation
     function animateCounters() {
         $('.stat-number').each(function() {
             const $this = $(this);
@@ -181,18 +213,20 @@ $(document).ready(function(){
             if (elementBottom > viewportTop && elementTop < viewportBottom) {
                 if (!$this.hasClass('animated')) {
                     $this.addClass('animated');
-                    $({ countNum: 0 }).animate({
-                        countNum: countTo
-                    }, {
-                        duration: 2000,
-                        easing: 'swing',
-                        step: function() {
-                            $this.text(Math.floor(this.countNum) + suffix);
-                        },
-                        complete: function() {
-                            $this.text(countTo + suffix);
+                    
+                    // GSAP counter animation
+                    gsap.fromTo($this[0], 
+                        { textContent: 0 },
+                        {
+                            textContent: countTo,
+                            duration: 2.5,
+                            ease: "power2.out",
+                            snap: { textContent: 1 },
+                            onUpdate: function() {
+                                $this.text(Math.ceil(this.targets()[0].textContent) + suffix);
+                            }
                         }
-                    });
+                    );
                 }
             }
         });
@@ -200,148 +234,218 @@ $(document).ready(function(){
 
     $(window).scroll(animateCounters);
 
-    // Parallax effect for hero background
+    // Enhanced parallax effect
     $(window).scroll(function() {
         const scrolled = $(window).scrollTop();
-        const parallax = scrolled * 0.5;
-        $('.hero-bg').css('transform', 'translateY(' + parallax + 'px)');
+        const parallax1 = scrolled * 0.3;
+        const parallax2 = scrolled * 0.5;
+        const parallax3 = scrolled * 0.7;
+        
+        $('.hero-bg').css('transform', `translateY(${parallax1}px)`);
+        $('.floating-shapes').css('transform', `translateY(${parallax2}px) rotate(${scrolled * 0.01}deg)`);
+        $('.shape').css('transform', `translateY(${parallax3}px)`);
     });
 
-    // Form enhancements
+    // Enhanced form interactions
     $('.contact-form input, .contact-form textarea').on('focus blur', function(e) {
         const $this = $(this);
         const $label = $this.next('label');
         
-        if (e.type === 'focus' || $this.val().length > 0) {
+        if (e.type === 'focus') {
             $label.addClass('active');
-        } else {
+            gsap.to($this[0], {duration: 0.3, scale: 1.02, ease: "power2.out"});
+        } else if ($this.val().length === 0) {
             $label.removeClass('active');
+            gsap.to($this[0], {duration: 0.3, scale: 1, ease: "power2.out"});
         }
     });
 
-    // Form submission
+    // Enhanced form submission with loading states
     $('.contact-form').submit(function(e) {
         e.preventDefault();
         
-        // Add loading state
         const $button = $(this).find('button[type="submit"]');
         const originalText = $button.html();
+        
+        // Loading animation
+        gsap.to($button[0], {duration: 0.3, scale: 0.95, ease: "power2.out"});
         $button.html('<i class="fas fa-spinner fa-spin"></i> Sending...');
         $button.prop('disabled', true);
         
-        // Simulate form submission
+        // Simulate form submission with enhanced feedback
         setTimeout(function() {
             $button.html('<i class="fas fa-check"></i> Message Sent!');
+            gsap.to($button[0], {duration: 0.3, scale: 1.05, ease: "back.out(1.7)"});
+            
+            // Success particle effect
+            createSuccessParticles($button);
+            
             setTimeout(function() {
                 $button.html(originalText);
                 $button.prop('disabled', false);
-            }, 2000);
-        }, 2000);
+                gsap.to($button[0], {duration: 0.3, scale: 1, ease: "power2.out"});
+            }, 3000);
+        }, 2500);
     });
 
-    // Add hover effects to service cards
+    // Success particles function
+    function createSuccessParticles($element) {
+        for(let i = 0; i < 15; i++) {
+            const particle = $('<div class="success-particle"></div>');
+            particle.css({
+                position: 'absolute',
+                width: '6px',
+                height: '6px',
+                background: '#10b981',
+                borderRadius: '50%',
+                pointerEvents: 'none',
+                zIndex: 1000
+            });
+            
+            $element.parent().append(particle);
+            
+            gsap.fromTo(particle[0], 
+                {
+                    x: 0,
+                    y: 0,
+                    opacity: 1,
+                    scale: 1
+                },
+                {
+                    x: `random(-100, 100)`,
+                    y: `random(-100, -50)`,
+                    opacity: 0,
+                    scale: 0,
+                    duration: 1.5,
+                    ease: "power2.out",
+                    onComplete: function() {
+                        particle.remove();
+                    }
+                }
+            );
+        }
+    }
+
+    // Enhanced hover effects for service cards
     $('.services .card').hover(
         function() {
-            gsap.to($(this), {duration: 0.3, y: -10, ease: "power2.out"});
+            gsap.to($(this), {
+                duration: 0.4, 
+                y: -15, 
+                rotationX: 5,
+                scale: 1.02,
+                ease: "power2.out"
+            });
+            
+            gsap.to($(this).find('.icon'), {
+                duration: 0.4,
+                rotation: 10,
+                scale: 1.1,
+                ease: "back.out(1.7)"
+            });
         },
         function() {
-            gsap.to($(this), {duration: 0.3, y: 0, ease: "power2.out"});
+            gsap.to($(this), {
+                duration: 0.4, 
+                y: 0, 
+                rotationX: 0,
+                scale: 1,
+                ease: "power2.out"
+            });
+            
+            gsap.to($(this).find('.icon'), {
+                duration: 0.4,
+                rotation: 0,
+                scale: 1,
+                ease: "power2.out"
+            });
         }
     );
 
-    // Intersection Observer for fade-in animations
+    // Advanced Intersection Observer for complex animations
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -100px 0px'
     };
 
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('aos-animate');
+                
+                // Trigger specific animations based on element
+                if (entry.target.classList.contains('title')) {
+                    gsap.fromTo(entry.target,
+                        { y: 50, opacity: 0 },
+                        { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+                    );
+                }
             }
         });
     }, observerOptions);
 
-    // Observe all elements with data-aos attribute
-    document.querySelectorAll('[data-aos]').forEach(el => {
+    // Observe all animated elements
+    document.querySelectorAll('[data-aos], .title, .stat-item, .tech-item').forEach(el => {
         observer.observe(el);
     });
 
-    // Add smooth reveal animation for sections
-    gsap.utils.toArray('section').forEach(section => {
-        gsap.fromTo(section.querySelector('.title'), 
-            {
-                y: 50,
-                opacity: 0
-            },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 1,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: section,
-                    start: "top 80%",
-                    end: "bottom 20%",
-                    toggleActions: "play none none reverse"
+    // Enhanced section reveal animations
+    gsap.utils.toArray('section').forEach((section, index) => {
+        const title = section.querySelector('.title');
+        if (title) {
+            gsap.fromTo(title, 
+                {
+                    y: 80,
+                    opacity: 0,
+                    rotationX: 15
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    rotationX: 0,
+                    duration: 1.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
                 }
-            }
-        );
+            );
+        }
     });
 
-    // Code window typing effect
-    function typeCode() {
-        const codeLines = $('.code-line');
-        let delay = 0;
-        
-        codeLines.each(function(index) {
-            const $line = $(this);
-            const text = $line.find('.code-text').text();
-            
-            setTimeout(() => {
-                $line.find('.code-text').empty();
-                let i = 0;
-                const typeInterval = setInterval(() => {
-                    $line.find('.code-text').text(text.substring(0, i));
-                    i++;
-                    if (i > text.length) {
-                        clearInterval(typeInterval);
-                    }
-                }, 50);
-            }, delay);
-            
-            delay += 800;
-        });
-    }
-
-    // Start code typing animation when hero section is visible
-    setTimeout(typeCode, 2000);
-
-    // Add particle effect to hero section
-    function createParticle() {
+    // Advanced particle system
+    function createAdvancedParticle() {
         const particle = $('<div class="particle"></div>');
-        const size = Math.random() * 4 + 2;
-        const duration = Math.random() * 3 + 2;
+        const size = Math.random() * 6 + 2;
+        const duration = Math.random() * 4 + 3;
         const delay = Math.random() * 2;
+        const colors = ['rgba(139, 92, 246, 0.6)', 'rgba(245, 158, 11, 0.6)', 'rgba(16, 185, 129, 0.6)'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
         
         particle.css({
             position: 'absolute',
             width: size + 'px',
             height: size + 'px',
-            background: 'rgba(255, 255, 255, 0.5)',
+            background: color,
             borderRadius: '50%',
             left: Math.random() * 100 + '%',
             top: '100%',
             pointerEvents: 'none',
-            zIndex: 1
+            zIndex: 1,
+            boxShadow: `0 0 ${size * 2}px ${color}`
         });
         
         $('.hero-bg').append(particle);
         
         gsap.to(particle, {
             y: -$(window).height() - 100,
+            x: `random(-50, 50)`,
             opacity: 0,
+            rotation: 360,
+            scale: 0,
             duration: duration,
             delay: delay,
             ease: "none",
@@ -351,10 +455,10 @@ $(document).ready(function(){
         });
     }
 
-    // Create particles periodically
-    setInterval(createParticle, 300);
+    // Create particles more frequently
+    setInterval(createAdvancedParticle, 200);
 
-    // Add magnetic effect to buttons
+    // Enhanced magnetic effect for buttons
     $('.btn-primary, .btn-secondary').mousemove(function(e) {
         const $this = $(this);
         const rect = this.getBoundingClientRect();
@@ -362,25 +466,210 @@ $(document).ready(function(){
         const y = e.clientY - rect.top - rect.height / 2;
         
         gsap.to($this, {
-            duration: 0.3,
-            x: x * 0.1,
-            y: y * 0.1,
+            duration: 0.4,
+            x: x * 0.15,
+            y: y * 0.15,
+            rotationX: y * 0.05,
+            rotationY: x * 0.05,
             ease: "power2.out"
         });
     });
 
     $('.btn-primary, .btn-secondary').mouseleave(function() {
         gsap.to($(this), {
-            duration: 0.3,
+            duration: 0.6,
             x: 0,
             y: 0,
-            ease: "power2.out"
+            rotationX: 0,
+            rotationY: 0,
+            ease: "elastic.out(1, 0.3)"
         });
     });
 
-    // Add loading animation
-    $(window).on('load', function() {
-        $('.loading').fadeOut();
-        $('body').removeClass('loading');
+    // Text reveal animation for paragraphs
+    gsap.utils.toArray('p').forEach(p => {
+        gsap.fromTo(p,
+            { opacity: 0, y: 30 },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: p,
+                    start: "top 90%",
+                    toggleActions: "play none none reverse"
+                }
+            }
+        );
     });
+
+    // Enhanced loading animation
+    $(window).on('load', function() {
+        gsap.to('.loading', {
+            duration: 1,
+            opacity: 0,
+            scale: 1.1,
+            ease: "power2.inOut",
+            onComplete: function() {
+                $('.loading').remove();
+                $('body').removeClass('loading');
+                
+                // Trigger entrance animations
+                gsap.fromTo('body', 
+                    { opacity: 0 },
+                    { opacity: 1, duration: 0.5 }
+                );
+            }
+        });
+    });
+
+    // Mouse cursor trail effect
+    let mouseX = 0, mouseY = 0;
+    let trailElements = [];
+    
+    $(document).mousemove(function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function createTrailElement() {
+        const trail = $('<div class="cursor-trail"></div>');
+        trail.css({
+            position: 'fixed',
+            width: '4px',
+            height: '4px',
+            background: 'rgba(139, 92, 246, 0.6)',
+            borderRadius: '50%',
+            pointerEvents: 'none',
+            zIndex: 9999,
+            left: mouseX + 'px',
+            top: mouseY + 'px'
+        });
+        
+        $('body').append(trail);
+        trailElements.push(trail);
+        
+        gsap.to(trail, {
+            duration: 0.8,
+            opacity: 0,
+            scale: 0,
+            ease: "power2.out",
+            onComplete: function() {
+                trail.remove();
+                trailElements = trailElements.filter(el => el !== trail);
+            }
+        });
+        
+        if (trailElements.length > 10) {
+            const oldTrail = trailElements.shift();
+            oldTrail.remove();
+        }
+    }
+
+    // Create trail elements periodically
+    setInterval(createTrailElement, 50);
+
+    // Add glitch effect to logo occasionally
+    setInterval(function() {
+        if (Math.random() < 0.1) { // 10% chance
+            $('.navbar .logo a').addClass('glitch');
+            setTimeout(function() {
+                $('.navbar .logo a').removeClass('glitch');
+            }, 200);
+        }
+    }, 5000);
+
+    // Add neon glow effect to gradient text
+    $('.gradient-text').addClass('neon-glow');
+
+    // Enhanced scroll-based animations
+    ScrollTrigger.create({
+        trigger: ".about",
+        start: "top 80%",
+        onEnter: () => {
+            $('.about .left').addClass('animate');
+            $('.about .right').addClass('animate');
+        }
+    });
+
+    ScrollTrigger.create({
+        trigger: ".skills",
+        start: "top 80%",
+        onEnter: () => {
+            $('.skills .left').addClass('animate');
+            $('.skills .right').addClass('animate');
+        }
+    });
+
+    ScrollTrigger.create({
+        trigger: ".contact",
+        start: "top 80%",
+        onEnter: () => {
+            $('.contact .left').addClass('animate');
+            $('.contact .right').addClass('animate');
+        }
+    });
+
+    // Background music visualization (visual only)
+    function createMusicVisualization() {
+        const bars = [];
+        const container = $('<div class="music-visualizer"></div>');
+        container.css({
+            position: 'fixed',
+            bottom: '20px',
+            right: '80px',
+            display: 'flex',
+            gap: '2px',
+            zIndex: 1000,
+            opacity: 0.3
+        });
+
+        for (let i = 0; i < 5; i++) {
+            const bar = $('<div></div>');
+            bar.css({
+                width: '3px',
+                height: '10px',
+                background: 'var(--primary-color)',
+                borderRadius: '2px'
+            });
+            container.append(bar);
+            bars.push(bar);
+        }
+
+        $('body').append(container);
+
+        // Animate bars
+        bars.forEach((bar, index) => {
+            gsap.to(bar, {
+                height: 'random(5, 25)',
+                duration: 'random(0.5, 1.5)',
+                ease: "power2.inOut",
+                repeat: -1,
+                yoyo: true,
+                delay: index * 0.1
+            });
+        });
+    }
+
+    createMusicVisualization();
+
+    // Add breathing animation to the hero section
+    gsap.to('.hero-bg', {
+        scale: 1.02,
+        duration: 4,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true
+    });
+
+    // Initialize all animations
+    setTimeout(function() {
+        // Trigger any remaining animations
+        $('.title').each(function() {
+            if ($(this).offset().top < $(window).scrollTop() + $(window).height()) {
+                $(this).addClass('animate');
+            }
+        });
+    }, 1000);
 });
